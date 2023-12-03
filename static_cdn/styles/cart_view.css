@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz@8..144&display=swap');
+
+.cart-view-title h3,
+.add-more-title h3,
+.add-more-link a,
+.quantity-title p,
+.increase-quantity a,
+.decrease-quantity a,
+.item-info p,
+.item-info p b,
+.item-price p,
+.item-price p b,
+.suggestion-title p {
+    font-family: 'Roboto Serif', serif;
+}
+
+#cart_section {
+    padding-top: 120px;
+    padding-bottom: 120px;
+}
+
+#product-item a {
+    text-decoration: none;
+    font-family: 'Roboto Serif', serif;
+    color: black;
+}

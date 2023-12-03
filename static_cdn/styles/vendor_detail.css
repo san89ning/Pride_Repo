@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz@8..144&display=swap');
+
+#vendor-section {
+    padding-top: 120px;
+}
+
+.category-link {
+    font-family: 'Roboto Serif', serif;
+    color: black;
+}

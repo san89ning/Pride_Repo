@@ -1,0 +1,25 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load menu %}
+
+{% block title %}
+Product
+{% endblock %}
+
+{% block start %}
+<link rel="stylesheet" href="{% static 'styles/return.css' %}">
+
+<section id="return-section">
+    <div class="container p-0">
+        <div class="return-header">
+            <div class="row py-3">
+                <div class="col-12">
+                    <h3>RETURN</h3>
+                </div>
+            </div>
+        </div>
+        <p>return will be updated soon</p>
+    </div>
+</section>
+{% include 'core/footer.html' %}
+{% endblock %}

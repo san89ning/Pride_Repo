@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz@8..144&display=swap');
+
+.add_product-section-title {
+    font-family: 'Roboto Serif', serif;
+    font-weight: bold;
+}
+
+form {
+    font-family: 'Roboto Serif', serif;
+}

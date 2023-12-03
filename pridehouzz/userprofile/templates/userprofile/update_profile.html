@@ -1,0 +1,35 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}
+Account
+{% endblock %}
+
+{% block start %}
+{% load crispy_forms_tags %}
+<link rel="stylesheet" href="{% static 'styles/update_profile.css' %}">
+
+    <section id="update-section" style="padding-top: 120px;">
+        <div class="container">
+            <div class="row py-5">
+                <div class="col-12">
+                    <div class="update-profile-title d-flex justify-content-center">
+                        <h3>PROFILE UPDATE</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="update-form d-flex justify-content-center pb-5">
+                <form method='POST' enctype="multipart/form-data">
+                    {%csrf_token%}
+                    {{u_form|crispy}}
+                    {{p_form|crispy}}
+                    <div class="submit-button py-2">
+                        <button class="px-2 btn btn-success" type='submit'>Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+{% include 'core/footer.html' %}
+{% endblock %}

@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wght@8..144,200&family=Roboto+Slab:wght@600&display=swap');
+
+#footer,
+.copyright-content span,
+.company-profile small,
+.copyright-content small {
+    font-family: 'Roboto Serif', serif;
+}
+
+.footer-content p,
+.footer-title h6 {
+    font-weight: bold;
+}
+
+.footer-nav li,
+.footer-item li {
+    list-style-type: none;
+}
+
+.footer-item a,
+.copyright-content span {
+    text-decoration: none;
+    color: black;
+}
+

@@ -1,0 +1,126 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}
+About
+{% endblock %}
+
+{% block start %}
+<link rel="stylesheet" href="{% static 'styles/about.css' %}">
+
+<section id="about-header">
+    <div class="container">
+        <div class="row pt-3">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center py-2 text-white">
+                <div class="company-logo d-flex justify-content-center">
+                    <img class="img-fluid" src="{% static 'images/logo/brand-logo1.png' %}" alt="Company Logo"
+                        style="width: 200px; height: 200px;">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="about-content">
+    <div class="container">
+        <div class="row d-flex justify-content-center py-5">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 d-flex align-items-center">
+                <div class="profile-info d-block">
+                    <div class="profile-title">
+                        <span>
+                            <h3 class="text-center">PH</h3>
+                        </span>
+                        <span>
+                            <h6 class="text-center">Master Balencers & Roofing Experts</h6>
+                        </span>
+                    </div>
+                    <div class="profile-content py-3">
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Deserunt impedit iure ipsa neque optio nisi rerum tenetur
+                            minima porro incidunt explicabo dignissimos molestias,
+                            fugiat aut expedita eligendi eos ratione ipsum.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row py-5">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="about-product-image d-flex justify-content-center">
+                    <img class="img-fluid" src="{% static 'images/about-product.jpg' %}" alt="product Image"
+                        style="width: 400px; height: 400px;">
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="about-product">
+                    <div class="about-product-title d-block py-2">
+                        <span>
+                            <small>about our product's</small>
+                        </span>
+                        <span>
+                            <h3>Experience Top Brands.</h3>
+                        </span>
+                    </div>
+                    <div class="about-product-description py-3">
+                        <span>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda neque nesciunt,
+                                doloribus dolores praesentium ut nulla sed. Adipisci aut, sequi, quod dolore saepe
+                                dolorem hic rerum tempora distinctio sint nisi!
+                            </p>
+                        </span>
+                    </div>
+                    <div class="product-link">
+                        <span>
+                            <button class="btn btn-primary">
+                                <a class="text-white" href="{% url 'product' %}" style="text-decoration: none;">SHOP
+                                    NOW</a>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row py-5">
+            <div class="col-12">
+                <div class="store-locations d-block">
+                    <span>
+                        <h6 class="text-center">OUR STORES</h6>
+                    </span>
+                    <span>
+                        <h3 class="text-center">We Are Available Across The State</h3>
+                    </span>
+                </div>
+            </div>
+            <div class="col-12 py-3">
+                <div class="head-office-title d-block">
+                    <span>
+                        <h6 class="text-center">HEAD OFFICE</h6>
+                    </span>
+                    <span>
+                        <p class="text-center">
+                            Opp. CIPET, Takyel Road, <br>
+                            Khuraijam Leikai, <br>
+                            Imphal, Manipur, <br>
+                            795004.
+                        </p>
+                    </span>
+                </div>
+                <div class="sub-office-title d-block">
+                    <span>
+                        <h6 class="text-center">SUB&dash;OFFICES</h6>
+                    </span>
+                    <span>
+                        <p class="text-center">
+                            <q>soon we will be reaching you!</q>
+                        </p>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include 'core/footer.html' %}
+{% endblock %}

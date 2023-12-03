@@ -1,0 +1,120 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load menu %}
+
+{% block title %}
+Product
+{% endblock %}
+
+{% block start %}
+<link rel="stylesheet" href="{% static 'styles/size_detail.css' %}">
+
+<section id="size-section" style="padding-top: 120px;">
+    <div class="container px-0">
+        <div class="row py-3">
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 d-flex justify-content-between py-3">
+                    <div class="product-section-title d-flex align-items-center py-2">
+                        <h3 class="text-dark" style="font-family: 'Roboto, Serif', serif;">
+                            PRODUCTS
+                        </h3>
+                    </div>
+                </div>
+                <div
+                    class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 d-flex align-items-center justify-content-end">
+                    <div class="category-select px-2">
+                        <select class="py-1" name="category_list" id="category" onchange="location = this.value;"
+                            style="width: 100px;">
+                            <option value="none" selected disabled hidden>Category</option>
+                            {% for category in category %}
+                            <option value="{% url 'category_detail' category.slug %}">
+                                {{category.title}}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="brand-select px-2">
+                        <select class="py-1" name="brand_list" id="brand" onchange="location = this.value;"
+                            style="width: 100px;">
+                            <option value="none" selected disabled hidden>Brand</option>
+                            {% for brand in brand %}
+                            <option value="{% url 'brand_detail' brand.slug %}">
+                                {{brand.title}}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="size-select px-2">
+                        <select class="py-1" name="size_list" id="brand" onchange="location = this.value;"
+                            style="width: 100px;">
+                            <option value="none" selected disabled hidden>Size</option>
+                            {% for size in size %}
+                            <option value="{% url 'size_detail' size.slug %}">
+                                {{size.title}}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="product-list" style="background-color: white;">
+        <div class="container py-3">
+            <div class="row d-flex justify-content-center">
+                <div class="col-auto">
+                    {% for product in products %}
+                    <div class="product-size-title px-1">
+                        <h3>{{ product.size.title }}</h3>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="row d-flex justify-content-between py-2 g-1">
+                {% for product in products %}
+                <div id="product-item" class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12 p-3 g-1">
+                    <a class="product-link text-dark" href="{% url 'size_product' product.size.slug product.slug %}"
+                        style="text-decoration: none;">
+                        <div class="product-card d-block rounded p-2" style="background-color: #e6e6e6;">
+                            {% if product.image %}
+                            <div class="product-image d-flex justify-content-center">
+                                <img class="img-fluid" src="{{ product.image.url }}" alt="image of {{ product.title }}">
+                            </div>
+                            {% else %}
+                            <div class="product-image d-flex justify-content-center">
+                                <img class="img-fluid" src="{% static '/images/thumbnail/product-thumbnail.jpg' %}"
+                                    alt="image of {{ product.title }}">
+                            </div>
+                            {% endif %}
+                            <div class="product-title px-1">
+                                {{ product.title }}
+                            </div>
+                            <div class="product-size-title px-1">
+                                {{ product.brand.title }}
+                            </div>
+                            <div class="product-size-title px-1">
+                                {{ product.size.title }}
+                            </div>
+                            <div class="product-price px-1">
+                                ₹.&nbsp;{{product.price}}.00
+                            </div>
+                            <div class="product-description px-1">
+                                {{product.description}}
+                            </div>
+                            <div class="add-to-cart-btn d-flex justify-content-end py-1 px-1">
+                                <a href="{% url 'add_to_cart' product.id %}">
+                                    <img class="img-fluid" src="{% static 'images/cart-icon2.png' %}" alt="Cart icon"
+                                        style="width: 16px;">
+                                </a>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include 'core/footer.html' %}
+{% endblock %}

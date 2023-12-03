@@ -1,0 +1,156 @@
+{% load static %}
+
+{% block start %}
+<link rel="stylesheet" href="{% static 'styles/footer.css' %}">
+
+<style>
+    @media (min-width: 768px) {
+
+        #footer-container,
+        #copyright-container {
+            padding: 0px 80px;
+        }
+    }
+
+    @media (max-width: 767.98px) {
+
+        #footer-container,
+        #copyright-container {
+            padding: 0px 20px;
+        }
+    }
+</style>
+
+<!--Footer Section-->
+<section id="footer-section">
+
+    <section id="footer">
+        <div id="footer-container" class="container-fluid">
+            <div class="row p-2">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-6 d-block p-0">
+                    <div class="company-logo">
+                        <a class="footer-link" href="/">
+                            <img class="img-fluid" src="{% static 'images/logo/brand-logo1.png' %}" alt="Company Logo"
+                                style="width: 40px; height: 40px;">
+                        </a>
+                    </div>
+                    <div class="company-info">
+                        <span>
+                            <small class="text-dark">
+                                PrideHouse
+                            </small>
+                        </span>
+                    </div>
+                    <div class="read-btn pt-3">
+                        <a class="footer-link" href="about">
+                            <button class="btn btn-sm btn-primary dark">
+                                Read More
+                            </button>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-6 d-block p-0">
+                    <div class="footer-title d-flex justify-content-start">
+                        <h6 class="text-dark">
+                            SITE MAP
+                        </h6>
+                    </div>
+                    <div class="footer-content d-flex justify-content-start">
+                        <ul class="footer-nav p-0">
+                            <li class="footer-item py-2">
+                                <a class="footer-link" href="/"><small>Home</small></a>
+                            </li>
+                            <li class="footer-item py-2">
+                                <a class="footer-link" href="{% url 'about' %}"><small>About</small></a>
+                            </li>
+                            <li class="footer-item py-2">
+                                <a class="footer-link" href="{% url 'product' %}"><small>Products</small></a>
+                            </li>
+                            <li class="footer-item py-2">
+                                <a class="footer-link" href="{% url 'seller' %}"><small>Seller</small></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-6 d-block p-0">
+                    <div class="footer-title d-flex justify-content-start">
+                        <h6 class="text-dark">
+                            QUICK LINKS
+                        </h6>
+                    </div>
+                    <div class="footer-content d-flex justify-content-start">
+                        <ul class="footer-nav p-0">
+                            <li class="footer-item py-2">
+                                <a class="footer-link" href="{% url 'privacy' %}"><small>Privacy</small></a>
+                            </li>
+                            <li class="footer-item py-2">
+                                <a class="footer-link" href="{% url 'return' %}"><small>Return Policy</small></a>
+                            </li>
+                            <li class="footer-item py-2">
+                                <a class="footer-link" href="{% url 'payment' %}"><small>Payments</small></a>
+                            </li>
+                            <li class="footer-item py-2">
+                                <a class="footer-link" href="{% url 'delivery' %}"><small>Delivery</small></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-6 d-block p-0">
+                    <div class="footer-title d-flex justify-content-start">
+                        <h6 class="text-dark">
+                            PAYMENTS
+                        </h6>
+                    </div>
+                    <div class="footer-content">
+                        <ul class="footer-item d-flex justify-content-start p-0">
+                            <li class="footer-link px-2">
+                                <img class="img-fluid" src="{% static 'images/google-pay.png' %}" alt=""
+                                    style="width: 32px;">
+                            </li>
+                            <li class="footer-link px-2">
+                                <img class="img-fluid" src="{% static 'images/visa.png' %}" alt="" style="width: 24px;">
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-title">
+                        <h6 class="text-dark">
+                            OFFICE:
+                        </h6>
+                    </div>
+                    <div class="head-office-address">
+                        <p class="text-dark">
+                            <small>
+                                Opp. CIPET, Takyel Road, <br>
+                                Khuraijam Leikai, <br>
+                                Imphal, Manipur, <br>
+                                795004.
+                            </small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="copyright">
+        <div id="copyright-container" class="container-fluid">
+            <div class="row py-2">
+                <div class="col-6">
+                    <div class="company-profile">
+                        <small>Designed & Developed by <a class="text-primary" href="http://www.capisoft.in"
+                                style="text-decoration: none;">CapiSoft</a></small>
+                    </div>
+                </div>
+                <div class="col-6 d-flex align-items-center">
+                    <div class="copyright-content text-dark">
+                        <small>&#169; 2023 P26, All Rights Reserved</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</section>
+<!------------------>
+
+{% endblock%}

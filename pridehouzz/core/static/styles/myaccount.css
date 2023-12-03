@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz@8..144&display=swap');
+
+#myaccount-section {
+    padding: 120px 0px 60px 0px;
+}
+
+.welcome-text h3,
+.user-name h3,
+.logout-link {
+    font-family: 'Roboto Serif', serif;
+}
+
+#account-nav {
+    height: 100%;
+    min-height: 100dvh;
+}
+
+.account-label p label {
+    font-family: 'Roboto Serif', serif;
+}
+
+.account-value p,
+.account-value small {
+    font-family: 'Roboto Serif', serif;
+    color: white;
+}

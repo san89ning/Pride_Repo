@@ -1,0 +1,231 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Cart{% endblock %}
+
+{% block start %}
+<link rel="stylesheet" href="{% static 'styles/cart_view.css' %}">
+
+{% if request.session.cart|length < 1 %}
+    <div class="container d-flex align-items-center justify-content-center" style="height: 100%; min-height: 100dvh;">
+        <div class="row rounded p-5 bg-light">
+            <div class="col-12 text-center">
+                <div class="empty-cart">
+                    <h3>Your cart is empty!</h3>
+                </div>
+            </div>
+            <div class="col-12 text-center py-2">
+                <button class="btn btn-md btn-primary" >
+                    <a class="product-link" href="{% url 'product' %}" style="text-decoration: none; color: white;">Shop Now</a>
+                </button>
+            </div>
+        </div>
+    </div>
+{% else %}
+<section id="cart_section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center">
+                <div class="cart-view-title">
+                    <h3 class="text-dark py-3">
+                        CART
+                    </h3>
+                </div>
+            </div>
+        </div>
+        <div class="row d-flex align-items-center px-3 py-2">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12 py-2">
+                <div class="add-more-title d-flex justify-content-center">
+                    <h3 class="text-dark">
+                        ADD MORE PRODUCTS?
+                    </h3>
+                </div>
+                <div class="add-more-link d-flex justify-content-center">
+                    <a class="product-link" href="{% url 'product' %}" style="text-decoration: none; color: blue;">CLICK
+                        HERE</a>
+                </div>
+            </div>
+            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-xs-12 d-block py-2">
+                <div class="card">
+                    {% for item in cart %}
+                    <div class="row d-flex justify-content-between p-2">
+                        <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                            <div class="row d-flex py-2">
+                                <div class="col-auto d-flex">
+                                    <div class="quantity-title">
+                                        <p class="text-dark">
+                                            Qty.
+                                        </p>
+                                    </div>
+                                    <div class="increase-quantity">
+                                        <a class="px-2 text-dark"
+                                            href="{% url 'change_quantity' item.product.id %}?action=increase"
+                                            style="text-decoration: none;">+</a>
+                                    </div>
+                                    |
+                                    <div class="decrease-quantity">
+                                        <a class="px-2 text-dark"
+                                            href="{% url 'change_quantity' item.product.id %}?action=decrease"
+                                            style="text-decoration: none;">-</a>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <a class="text-dark" href="{% url 'remove_from_cart' item.product.id %}">
+                                        <img class="img-fluid" src="{% static 'images/trash-icon.png' %}"
+                                            alt="trash-icon">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="colxl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                            <div class="item-image">
+                                {% if product.image %}
+                                <div class="product-image d-flex justify-content-center">
+                                    <img class="img-fluid" src="{{ item.product.image.url }}"
+                                        alt="image of {{ product.title }}">
+                                </div>
+                                {% else %}
+                                <div class="product-image d-flex justify-content-center">
+                                    <img class="img-fluid" src="{% static '/images/thumbnail/product-thumbnail.jpg' %}"
+                                        alt="image of {{ product.title }}">
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                            <div class="item-info">
+                                <p>
+                                    <b>Title: </b>{{ item.product.title }} <br>
+                                    <b>Quantity: </b>{{ item.quantity }} <br>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 d-flex justify-content-end">
+                            <div class="item-price">
+                                <p>
+                                    <b>Price: </b>₹.{{ item.product.price }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <div class="hr-line p-2">
+                        <hr style="color: grey;">
+                    </div>
+                    <div class="row d-flex align-items-center justify-content-between p-2">
+                        <div class="col-auto">
+                            <a href="{% url 'checkout' %}">
+                                <button class="btn btn-primary">
+                                    Checkout
+                                </button>
+                            </a>
+                        </div>
+                        <div class="col-auto">
+                            <div class="total-price">
+                                <strong>Total cost:&nbsp;</strong>₹.{{ cart.get_total_cost }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container py-4">
+        {% if cart.get_total_cost == 0 %}
+        <div class="row">
+            <div class="row d-flex justify-content-between g-2">
+                {% for product in products %}
+                <div id="product-item" class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12 px-3 py-4 g-1">
+                    <a class="product-link" href="{% url 'category_product' product.category.slug product.slug %}">
+                        <div class="product-card d-block rounded p-2" style="background-color: #f2f2f2;">
+                            {% if product.image %}
+                            <div class="product-image d-flex justify-content-center">
+                                <img class="img-fluid" src="{{ product.image.url }}" alt="image of {{ product.title }}">
+                            </div>
+                            {% else %}
+                            <div class="product-image d-flex justify-content-center">
+                                <img class="img-fluid" src="{% static '/images/thumbnail/product-thumbnail.jpg' %}"
+                                    alt="image of {{ product.title }}">
+                            </div>
+                            {% endif %}
+                            <div class="product-title">
+                                {{ product.title }}
+                            </div>
+                            <div class="product-brand-title">
+                                {{ product.brand.title }}
+                            </div>
+                            <div class="product-price">
+                                ₹.&nbsp;{{ product.price }}.00
+                            </div>
+                            <div class="product-description">
+                                {{ product.description }}
+                            </div>
+                            <div class="add-to-cart-btn d-flex justify-content-end py-2 px-2">
+                                <a href="{% url 'add_to_cart' product.id %}">
+                                    <img class="img-fluid" src="{% static 'images/add-to-cart.png' %}" alt="Cart icon"
+                                        style="width: 16px;">
+                                </a>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% else %}
+        <div class="row">
+            <div class="col-12 suggestion-title border-bottom">
+                <p>
+                    People often bought this together!
+                </p>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-between g-2">
+            {% if products %}
+            {% for product in products %}
+            <div id="product-item" class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12 px-3 py-4 g-1">
+                <a class="product-link" href="{% url 'category_product' product.category.slug product.slug %}">
+                    <div class="product-card d-block rounded p-2" style="background-color: #f2f2f2;">
+                        {% if product.image %}
+                        <div class="product-image d-flex justify-content-center">
+                            <img class="img-fluid" src="{{ product.image.url }}" alt="image of {{ product.title }}">
+                        </div>
+                        {% else %}
+                        <div class="product-image d-flex justify-content-center">
+                            <img class="img-fluid" src="{% static '/images/thumbnail/product-thumbnail.jpg' %}"
+                                alt="image of {{ product.title }}">
+                        </div>
+                        {% endif %}
+                        <div class="product-title">
+                            {{ product.title }}
+                        </div>
+                        <div class="product-brand-title">
+                            {{ product.brand.title }}
+                        </div>
+                        <div class="product-price">
+                            ₹.&nbsp;{{ product.price }}.00
+                        </div>
+                        <div class="product-description">
+                            {{ product.description }}
+                        </div>
+                        <div class="add-to-cart-btn d-flex justify-content-end py-2 px-2">
+                            <a href="{% url 'add_to_cart' product.id %}">
+                                <img class="img-fluid" src="{% static 'images/add-to-cart.png' %}" alt="Cart icon"
+                                    style="width: 16px;">
+                            </a>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+            {% else %}
+            <p class="text-center py-5" style="font-family: 'Roboto, Serif', serif;">Products will be updated soon.</p>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endif %}
+
+{% include 'core/footer.html' %}
+{% endblock %}

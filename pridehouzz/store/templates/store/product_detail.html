@@ -1,0 +1,73 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}
+{{ product.title }}
+{% endblock %}
+
+{% block start %}
+<link rel="stylesheet" href="{% static 'styles/product_detail.css' %}">
+
+<section id="product_detail">
+    <div class="container-fluid py-3" style="background-color: white;">
+        <div id="product_detail_section">
+            <div class="container py-2">
+                <div class="row d-block py-3">
+                    <div class="col-12">
+                        <div class="product-detail-title">
+                            <h3>PRODUCT DETAIL</h3>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="row py-3">
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12 p-3 bg-light">
+                                <div class="product-image d-flex align-items-center justify-content-center h-100">
+                                    {% if product.image %}
+                                    <div class="product-image d-flex justify-content-center">
+                                        <img class="img-fluid" src="{{ product.image.url }}"
+                                            alt="image of {{ product.title }}" style="width: 150px; height: 150px;">
+                                    </div>
+                                    {% else %}
+                                    <div class="product-image d-flex justify-content-center">
+                                        <img class="img-fluid"
+                                            src="{% static '/images/thumbnail/product-thumbnail.jpg' %}"
+                                            alt="image of {{ product.title }}">
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div id="product-details" class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-xs-12 p-3 bg-light">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="product-title">
+                                            <h4>{{product.title}}</h4>
+                                        </div>
+                                        <div class="product-size-title pb-2">
+                                            <p class="m-0">Size:</p>{{ product.size.title }}
+                                        </div>
+                                        <div class="product-price pb-2">
+                                            <p class="m-0">Price:</p>₹.&nbsp;{{ product.price }}.00
+                                        </div>
+                                        <div class="add-to-cart-btn d-flex py-2">
+                                            <a href="{% url 'add_to_cart' product.id %}">
+                                                <img class="img-fluid" src="{% static 'images/add-to-cart.png' %}" alt="Cart icon"
+                                                    style="width: 16px;">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="product-description">
+                                            <p class="m-0">Description:</p>{{product.description}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% include 'core/footer.html' %}
+{% endblock %}

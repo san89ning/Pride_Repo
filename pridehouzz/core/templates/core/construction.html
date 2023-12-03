@@ -1,0 +1,137 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load menu %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+Construction
+{% endblock %}
+
+{% block start %}
+<link rel="stylesheet" href="{% static 'styles/construction.css' %}">
+
+<section id="construction">
+
+    <div class="container">
+        <div class="row py-4">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="constrution-title">
+                    <span>
+                        <h3 class="text-dark">CONSTRUCTION</h3>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="row py-2">
+            <div class="col-12">
+                <div class="construction-description">
+                    <span>
+                        <p>To know the cost for complete construction, Please enter the required area.</p>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row py-2 d-flex">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 py-2">
+                <form class="d-block" action="." method="GET">
+                    <div class="row">
+                        <div class="col-6 d-block">
+                            <div class="area-title"><label for="">Area</label></div>
+                            <div class="input-area d-flex">
+                                <div class="text-input"><input type="text" name="area" required></div>
+                                <div class="unit-title ps-2">sq. ft.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row d-flex py-2">
+                        <div class="col-4 d-block">
+                            <div class="title">
+                                <span>
+                                    <label for="category-option">Category</label>
+                                </span>
+                            </div>
+                            <div class="value d-flex align-items-center">
+                                <select name="category-option" id="category" class="w-100">
+                                    <option value="title">select</option>
+                                    {% for category in category %}
+                                    <option value="title">{{category.title}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-4 d-block">
+                            <div class="title">
+                                <span>
+                                    <label for="size-option">Size</label>
+                                </span>
+                            </div>
+                            <div class="value d-flex align-items-center">
+                                <select name="size-option" id="size" class="w-100">
+                                    <option value="title">select</option>
+                                    {% for size in size %}
+                                    <option value="title">{{size.title}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-4 d-block">
+                            <div class="title">
+                                <span>
+                                    <label for="brand-option">Brand</label>
+                                </span>
+                            </div>
+                            <div class="value d-flex align-items-center">
+                                <select name="brand-option" id="brand" class="w-100">
+                                    <option value="title">select</option>
+                                    {% for brand in brand %}
+                                    <option value="title">{{brand.title}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="py-3">
+                        <button class="btn btn-md btn-primary text-white">Enter</button>
+                    </div>
+                </form>
+                <div class="d-flex justify-content-end">
+                    <div class="total-title d-flex align-items-center">
+                        <span>
+                            <h5>Total Eastimated Cost:&nbsp;</h5>
+                        </span>
+                    </div>
+                    <div class="total-value d-flex align-items-center">
+                        <span>
+                            <h4>
+                                {% if area %}
+                                ₹. {{total}}
+                                {% else %}
+                                ₹. 0
+                                {% endif %}
+                            </h4>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="important-point">
+                    <small class="text-danger">
+                        *The actual cost may be different from the calculated cost.
+                    </small>
+                </div>
+                <div class="important-point">
+                    <small class="text-danger">
+                        *To know the actual cost please contact our customer service.
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+{% include 'core/footer.html' %}
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Checkout{% endblock %}
+
+{% block start %}
+{% load crispy_forms_tags %}
+<link rel="stylesheet" href="{% static 'styles/checkout.css' %}">
+
+<section id="checkout-section">
+    <div class="container">
+        <div class="row d-flex justify-content-center py-4">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 py-2">
+                <div class="row">
+                    <div id="checkout-card" class="col-auto p-3">
+                        <div class="card p-3">
+                            <div class="card-title">
+                                <p>
+                                    Your order contains the following items.
+                                </p>
+                            </div>
+                            {% for item in cart %}
+                            <div class="row d-flex justify-content-between p-2">
+                                <div class="colxl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                                    <div class="item-image">
+                                        {% if product.image %}
+                                        <div class="product-image d-flex justify-content-center">
+                                            <img class="img-fluid" src="{{ item.product.image.url }}"
+                                                alt="image of {{ product.title }}">
+                                        </div>
+                                        {% else %}
+                                        <div class="product-image d-flex justify-content-center">
+                                            <img class="img-fluid"
+                                                src="{% static '/images/thumbnail/product-thumbnail.jpg' %}"
+                                                alt="image of {{ product.title }}">
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                    <div class="item-info">
+                                        <p>
+                                            <b>Title: </b>{{ item.product.title }} <br>
+                                            <b>Quantity: </b>{{ item.quantity }} <br>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 d-flex justify-content-end">
+                                    <div class="item-price">
+                                        <p>
+                                            <b>Price: </b>₹.{{ item.product.price }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            <hr style="color: #d2d2d2;">
+                            <div class="total-amount d-flex justify-content-end">
+                                <p>Total payable amount:</p>&nbsp;₹.{{ cart.get_total_cost }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 py-2">
+                <div class="order-form p-3">
+                    <form class="border rounded p-5" method="post" action="" style="background-color: #f2f2f2;">
+                        {% csrf_token %}
+                        {{ form | crispy }}
+                        <div class="checkout-button py-2">
+                            <button class="btn btn-lg btn-primary px-1">Checkout</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% include 'core/footer.html' %}
+{% endblock %}

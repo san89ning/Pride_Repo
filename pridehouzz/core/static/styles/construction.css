@@ -1,0 +1,20 @@
+#construction {
+    padding: 120px 0px 60px 0px;
+}
+
+.constrution-title span h3,
+.title span h3,
+.total-title span h4 {
+    font-family: 'Roboto Serif', serif;
+    font-weight: bold;
+}
+
+.construction-description span p,
+.message span p,
+.area-title,
+.text-input,
+.unit-title,
+.value span,
+.total-value span h4 {
+    font-family: 'Roboto Serif', serif;
+}

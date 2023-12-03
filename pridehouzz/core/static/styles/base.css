@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@200;300&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.w-100 {
+    width: 100% !important;
+}
+
+.contact_link,
+.seller_link,
+.business_hrs {
+    font-family: 'Roboto Slab', serif;
+}
+
+.position-absolute {
+    position: absolute !important;
+}
+
+.nav-link {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 300;
+    color: white;
+}
+
+/*toggler icon*/
+.navbar-toggler {
+    width: 20px;
+    height: 20px;
+    position: relative;
+    transition: .5s ease-in-out;
+}
+
+.navbar-toggler,
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+    outline: none;
+    box-shadow: none;
+    border: 0;
+}
+
+.navbar-toggler span {
+    margin: 0;
+    padding: 0;
+}
+
+.toggler-icon {
+    display: block;
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background: white;
+    border-radius: 1px;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: .25s ease-in-out;
+}
+
+.middle-bar {
+    margin-top: 0px;
+}
+
+.navbar-toggler .top-bar {
+    margin-top: 0px;
+    transform: rotate(135deg);
+}
+
+.navbar-toggler .middle-bar {
+    opacity: 0;
+    filter: blur(100);
+}
+
+.navbar-toggler .bottom-bar {
+    margin-top: 0px;
+    transform: rotate(-135deg);
+}
+
+.navbar-toggler.collapsed .top-bar {
+    margin-top: -20px;
+    transform: rotate(0deg);
+}
+
+.navbar-toggler.collapsed .middle-bar {
+    opacity: 1;
+    filter: blur(100);
+}
+
+.navbar-toggler.collapsed .bottom-bar {
+    margin-top: 20px;
+    transform: rotate(0deg);
+}
+
+/*-----------*/
+
+input:focus {
+    outline: none;
+}
+
+::placeholder {
+    font-family: 'Roboto Slab', serif;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        position: absolute;
+        width: 100%;
+        left: 0;
+        padding: 16px;
+        z-index: 2;
+    }
+
+    .navbar-collapse {
+        position: absolute;
+        background-color: black;
+        opacity: 85%;
+        padding-left: 16px;
+        top: 0;
+        left: 0;
+        width: 80%;
+        height: 100vh;
+    }
+
+    .nav-item {
+        padding-top: 8px;
+    }
+
+}

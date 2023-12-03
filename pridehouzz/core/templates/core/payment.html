@@ -1,0 +1,25 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load menu %}
+
+{% block title %}
+Product
+{% endblock %}
+
+{% block start %}
+<link rel="stylesheet" href="{% static 'styles/payment.css' %}">
+
+<section id="payment-section">
+    <div class="container p-0">
+        <div class="payment-header">
+            <div class="row py-3">
+                <div class="col-12">
+                    <h3>PAYMENT</h3>
+                </div>
+            </div>
+        </div>
+        <p>payment will be updated soon</p>
+    </div>
+</section>
+{% include 'core/footer.html' %}
+{% endblock %}

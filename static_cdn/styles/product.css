@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz@8..144&display=swap');
+
+#products {
+    padding: 120px 0px 60px 0px;
+}
+
+.product-title span h3,
+select {
+    font-family: 'Roboto Serif', serif;
+}
+
+#product-item {
+    font-family: 'Roboto Serif', serif;
+}
+
+#product-item a {
+    text-decoration: none;
+    color: black;
+}
+
+/*product image size*/
+.product-image {
+    position: relative;
+}
+
+.product-image::after {
+    display: block;
+    content: '';
+    /* Aspect Ratio Eg:- 16:9 ratio --> 9/16 * 100 = 56.25 */
+    padding-bottom: 56.25%;
+}
+
+.product-image img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+/* end of product image size */

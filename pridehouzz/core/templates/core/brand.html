@@ -1,0 +1,3 @@
+{% for brand in brand %}
+    <a href="{% url 'brand_detail' brand.slug %}" class="text-white">{{ brand.title }}</a>
+{% endfor %}

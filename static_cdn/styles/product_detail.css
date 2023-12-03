@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz@8..144&display=swap');
+
+.product-detail-title,
+#product-details {
+    font-family: 'Roboto Serif', serif;
+}
+
+@media (min-width: 1200px) and (max-width: 1399.98px) {
+    #product_detail {
+        padding-top: 160px;
+    }
+}
+
+@media (max-width: 576px) {
+    #product_detail {
+        padding-top: 120px;
+    }
+}

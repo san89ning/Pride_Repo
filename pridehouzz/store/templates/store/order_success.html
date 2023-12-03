@@ -1,0 +1,31 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}
+Order
+{% endblock %}
+
+{% block start %}
+
+<section id="success">
+    <div class="container d-flex align-items-center justify-content-center" style="height: 100%; min-height: 100dvh;">
+        <div class="row">
+            <div class="col-12 congrats-text">
+                <p class="text-center">Congratulations! Your have successfully place an order.</p>
+            </div>
+            <div class="col-12 d-block">
+                <div class="login-text text-center">
+                    go to home page.
+                </div>
+                <div class="login-button text-center">
+                    <button class="btn btn-md btn-primary">
+                        <a class="text-white" href="{% url 'home' %}" style="text-decoration: none;">Home</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include 'core/footer.html' %}
+{% endblock %}

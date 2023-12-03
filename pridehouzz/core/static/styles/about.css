@@ -1,0 +1,27 @@
+#about-header {
+    padding-top: 120px;
+}
+
+.about-header-title h3,
+.profile-title span h3,
+.profile-title span h6,
+.about-product-title span h6,
+.about-product-title span h3,
+.store-locations span h6,
+.store-locations span h3,
+.head-office-title span h6,
+.sub-office-title span h6 {
+    font-family: 'Roboto Serif', serif;
+    font-weight: bold;
+}
+
+.profile-content p,
+.about-product-description span p,
+.head-office-title span p,
+.sub-office-title span p {
+    font-family: 'Roboto Serif', serif;
+}
+
+.profile-content p {
+    text-align: justify;
+}

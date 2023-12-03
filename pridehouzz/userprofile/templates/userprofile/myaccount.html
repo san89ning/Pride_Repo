@@ -1,0 +1,427 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}
+Account
+{% endblock %}
+
+{% block start %}
+{% load crispy_forms_tags %}
+
+<style>
+    @media (min-width: 768px) {
+        #account-header {
+            padding-top: 40px;
+        }
+    }
+</style>
+
+<link rel="stylesheet" href="{% static 'styles/myaccount.css' %}">
+
+<section id="myaccount-section">
+    <div class="container">
+        <div id="account-header" class="row">
+            <div id="welcome-text" class="col-12 d-flex">
+                <h3 class="text-light">
+                    WELCOME BACK
+                </h3>
+            </div>
+            <div id="user-name" class="col-12 d-flex">
+                <h3 class="text-light">{% firstof user.get_full_name user.username %}</h3>
+            </div>
+        </div>
+        <div id="account-content" class="row d-flex py-3 bg-light">
+            {% if request.user.userprofile.is_vendor %}
+            <div class="col-3">
+                <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <button class="nav-link active mt-2 text-dark" id="v-pills-home-tab" data-bs-toggle="pill"
+                        data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home"
+                        aria-selected="true">Personal</button>
+                    <button class="nav-link mt-2 text-dark" id="v-pills-profile-tab" data-bs-toggle="pill"
+                        data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile"
+                        aria-selected="false">Products</button>
+                    <button class="nav-link mt-2 text-dark" id="v-pills-messages-tab" data-bs-toggle="pill"
+                        data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages"
+                        aria-selected="false">Messages</button>
+                    <button class="nav-link mt-2 text-dark" id="v-pills-settings-tab" data-bs-toggle="pill"
+                        data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings"
+                        aria-selected="false">Settings</button>
+                    <button class="nav-link mt-2 text-dark" id="v-pills-settings-tab" data-bs-toggle="pill"
+                        data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings"
+                        aria-selected="false">
+                        <a class="logout-link text-danger d-flex justify-content-center" target="_self"
+                            href="{% url 'logout' %}">
+                            <button class="btn btn-md btn-danger">Logout</button>
+                        </a>
+                    </button>
+                </div>
+            </div>
+            <div class="col-9">
+                <div class="tab-content px-2 w-100" id="v-pills-tabContent">
+                    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
+                        aria-labelledby="v-pills-home-tab">
+                        <div class="row d-block">
+                            <div class="col-12 d-flex p-2">
+                                <div class="row w-100">
+                                    <div class="col-6 pe-4">
+                                        <div class="account-label border-bottom">
+                                            <p><label for="">Username</label></p>
+                                        </div>
+                                        <div class="account-value pt-2">
+                                            <p class="text-dark">
+                                                {{user.username}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 pe-4">
+                                        <div class="account-label border-bottom">
+                                            <p>
+                                                <label for="">
+                                                    Profile Image
+                                                </label>
+                                            </p>
+                                        </div>
+                                        <div class="account-value pt-2">
+                                            {% if user.profile_image %}
+                                            <img class="img-fluid" src="{{user.profile_image.url}}" alt=""
+                                                style="width: 60px; height: 60px;">
+                                            {% else %}
+                                            <img class="img-fluid"
+                                                src="{% static '/images/thumbnail/user-thumbnail.jpg' %}" alt=""
+                                                style="width: 60px; height: 60px;">
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 d-flex p-2">
+                                <div class="row w-100">
+                                    <div class="col-6 pe-4">
+                                        <div class="account-label border-bottom">
+                                            <p><label for="">Firstname</label></p>
+                                        </div>
+                                        <div class="account-value pt-2">
+                                            <p>
+                                                {{user.first_name}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 pe-4">
+                                        <div class="account-label border-bottom">
+                                            <p><label for="">Lastname</label></p>
+                                        </div>
+                                        <div class="account-value pt-2">
+                                            <p>
+                                                {{user.last_name}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 p-2 d-flex">
+                                <div class="row w-100">
+                                    <div class="col-6 pe-4">
+                                        <div class="account-label border-bottom">
+                                            <p>
+                                                <label for="">
+                                                    Gender
+                                                </label>
+                                            </p>
+                                        </div>
+                                        <div class="account-value pt-2">
+                                            <p>
+                                                {{user.gender}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 pe-4">
+                                        <div class="account-label border-bottom">
+                                            <p><label for="">Phone Number</label></p>
+                                        </div>
+                                        <div class="account-value pt-2">
+                                            <small>{{user.phone_number}}</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 d-flex p-2">
+                                <div class="row w-100">
+                                    <div class="col-6 pe-4">
+                                        <div class="account-label border-bottom">
+                                            <p><label for="">Email</label></p>
+                                        </div>
+                                        <div class="account-value pt-2">
+                                            <p>
+                                                {{user.email}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 pe-4">
+                                        <div class="account-label border-bottom">
+                                            <p><label for="">Address</label></p>
+                                        </div>
+                                        <div class="account-value pt-2">
+                                            <p>
+                                                {{user.address}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 d-flex justify-content-end">
+                                <div class="edit-button">
+                                    <a href="{% url 'update_profile' %}">
+                                        <button class="btn btn-md btn-primary">edit</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
+                        aria-labelledby="v-pills-profile-tab">
+                        <div class="col-auto">
+                            <div class="product-list-title">
+                                <h3>
+                                    MY PRODUCTS
+                                </h3>
+                            </div>
+                            {% if products %}
+                            <div class="row d-flex justify-content-between py-3">
+                                {% for product in products %}
+                                <div id="product-item" class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12 px-3 py-4">
+                                    <a class="product-link" href="{% url 'edit_product' product.id %}">
+                                        <div class="product-card d-block rounded p-2"
+                                            style="background-color: #e6e6e6;">
+                                            {% if product.image %}
+                                            <div class="product-image d-flex justify-content-center">
+                                                <img class="img-fluid" src="{{ product.image.url }}"
+                                                    alt="image of {{ product.title }}">
+                                            </div>
+                                            {% else %}
+                                            <div class="product-image d-flex justify-content-center">
+                                                <img class="img-fluid"
+                                                    src="{% static '/images/thumbnail/product-thumbnail.jpg' %}"
+                                                    alt="image of {{ product.title }}">
+                                            </div>
+                                            {% endif %}
+                                            <div class="product-details py-2">
+                                                <div class="product-brand-title">
+                                                    <span class="text-dark">{{ product.brand.title }}</span>
+                                                </div>
+                                                <div class="product-title">
+                                                    <span class="text-dark">{{ product.title }}</span>
+                                                </div>
+                                                <div class="product-price">
+                                                    <span class="text-dark">₹.&nbsp;{{product.price}}.00</span>
+                                                </div>
+                                                <div class="product-description">
+                                                    <span class="text-dark">{{product.description}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            <div class="alert-text">
+                                <p>
+                                    You don't have any products
+                                </p>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel"
+                        aria-labelledby="v-pills-messages-tab">You don't have any messages right now.</div>
+                    <div class="tab-pane fade" id="v-pills-settings" role="tabpanel"
+                        aria-labelledby="v-pills-settings-tab">Settings will be updated very soon</div>
+                </div>
+            </div>
+            {% else %}
+            <div class="col-3">
+                <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <button class="nav-link active mt-2 text-dark" id="v-pills-home-tab" data-bs-toggle="pill"
+                        data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home"
+                        aria-selected="true">Personal</button>
+                    <button class="nav-link mt-2 text-dark" id="v-pills-profile-tab" data-bs-toggle="pill"
+                        data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile"
+                        aria-selected="false">Orders</button>
+                    <button class="nav-link mt-2 text-dark" id="v-pills-messages-tab" data-bs-toggle="pill"
+                        data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages"
+                        aria-selected="false">Messages</button>
+                    <button class="nav-link mt-2 text-dark" id="v-pills-settings-tab" data-bs-toggle="pill"
+                        data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings"
+                        aria-selected="false">Settings</button>
+                    <button class="nav-link mt-2 text-dark" id="v-pills-settings-tab" data-bs-toggle="pill"
+                        data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings"
+                        aria-selected="false">
+                        <a class="logout-link text-danger d-flex justify-content-center" target="_self" href="{% url 'logout' %}">
+                            <button class="btn btn-md btn-danger">Logout</button>
+                        </a>
+                    </button>
+                </div>
+            </div>
+            <div class="col-9">
+                <div class="tab-content px-2 w-100" id="v-pills-tabContent">
+                    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
+                        aria-labelledby="v-pills-home-tab">
+                        <div class="row d-block">
+                            <div class="col-12 d-flex p-2">
+                                <div class="row w-100">
+                                    <div class="col-6 pe-4">
+                                        <div class="account-label border-bottom">
+                                            <p><label for="">Username</label></p>
+                                        </div>
+                                        <div class="account-value pt-2">
+                                            <p class="text-dark">
+                                                {{user.username}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 pe-4">
+                                        <div class="account-label border-bottom">
+                                            <p>
+                                                <label for="">
+                                                    Profile Image
+                                                </label>
+                                            </p>
+                                        </div>
+                                        <div class="account-value pt-2">
+                                            {% if user.profile_image %}
+                                            <img class="img-fluid" src="{{user.profile_image.url}}" alt=""
+                                                style="width: 60px; height: 60px;">
+                                            {% else %}
+                                            <img class="img-fluid"
+                                                src="{% static '/images/thumbnail/user-thumbnail.jpg' %}" alt=""
+                                                style="width: 60px; height: 60px;">
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 d-flex p-2">
+                                <div class="row w-100">
+                                    <div class="col-6 pe-4">
+                                        <div class="account-label border-bottom">
+                                            <p><label for="">Firstname</label></p>
+                                        </div>
+                                        <div class="account-value pt-2">
+                                            <p>
+                                                {{user.first_name}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 pe-4">
+                                        <div class="account-label border-bottom">
+                                            <p><label for="">Lastname</label></p>
+                                        </div>
+                                        <div class="account-value pt-2">
+                                            <p>
+                                                {{user.last_name}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 p-2 d-flex">
+                                <div class="row w-100">
+                                    <div class="col-6 pe-4">
+                                        <div class="account-label border-bottom">
+                                            <p>
+                                                <label for="">
+                                                    Gender
+                                                </label>
+                                            </p>
+                                        </div>
+                                        <div class="account-value pt-2">
+                                            <p>
+                                                {{user.gender}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 pe-4">
+                                        <div class="account-label border-bottom">
+                                            <p><label for="">Phone Number</label></p>
+                                        </div>
+                                        <div class="account-value pt-2">
+                                            <small>{{user.phone_number}}</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 d-flex p-2">
+                                <div class="row w-100">
+                                    <div class="col-6 pe-4">
+                                        <div class="account-label border-bottom">
+                                            <p><label for="">Email</label></p>
+                                        </div>
+                                        <div class="account-value pt-2">
+                                            <p>
+                                                {{user.email}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 pe-4">
+                                        <div class="account-label border-bottom">
+                                            <p><label for="">Address</label></p>
+                                        </div>
+                                        <div class="account-value pt-2">
+                                            <p>
+                                                {{user.address}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 d-flex justify-content-end">
+                                <div class="edit-button">
+                                    <a href="{% url 'update_profile' %}">
+                                        <button class="btn btn-md btn-primary">edit</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
+                        aria-labelledby="v-pills-profile-tab">
+                        {% if orderitem %}
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ITEMS</th>
+                                    <th scope="col">AMOUNT</th>
+                                    <th scope="col">QUANTITY</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for orderitem in orderitem %}
+                                <tr>
+                                    <td>{{orderitem.product}}</td>
+                                    <td>₹.&nbsp;{{ orderitem.price }}.00</td>
+                                    <td>{{orderitem.quantity}}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        {% else %}
+                        <p>You heven't made any orders yet!</p>
+                        {% endif %}
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel"
+                        aria-labelledby="v-pills-messages-tab">You don't have any messages right now.</div>
+                    <div class="tab-pane fade" id="v-pills-settings" role="tabpanel"
+                        aria-labelledby="v-pills-settings-tab">Settings will be updated very soon</div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+{% include 'core/footer.html' %}
+{% endblock %}

@@ -1,0 +1,261 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load menu %}
+
+{% block title %}
+Product
+{% endblock %}
+
+{% block start %}
+
+<style>
+    @media (min-width: 768px) {
+        #product-container {
+            padding: 0px 80px;
+        }
+    }
+</style>
+
+<link rel="stylesheet" href="{% static 'styles/product.css' %}">
+
+<section id="products">
+
+    <section id="product-section">
+        <div class="product-list" style="background-color: white;">
+            <div id="product-container" class="container-fluid">
+                <div class="row">
+                    <div class="col-12 d-flex py-4">
+                        <div class="product-title">
+                            <span>
+                                <h3 class="fw-bold text-dark">ALL PRODUCTS</h3>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <!--mobile Display-->
+                <div class="row pb-4">
+                    <div class="col-12 d-md-none">
+                        <div class="accordion accordion-flush">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed fw-bold" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#filter-collapseOne"
+                                        aria-expanded="false" aria-controls="flush-collapseOne">
+                                        Filter
+                                    </button>
+                                </h2>
+                                <div id="filter-collapseOne" class="accordion-collapse collapse"
+                                    data-bs-parent="#accordionFlush">
+                                    <div id="category-accordion" class="accordion accordion-flush">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header">
+                                                <button class="accordion-button collapsed fw-bold" type="button"
+                                                    data-bs-toggle="collapse" data-bs-target="#category-collapseOne"
+                                                    aria-expanded="false" aria-controls="flush-collapseOne">
+                                                    Categories
+                                                </button>
+                                            </h2>
+                                            <div id="category-collapseOne" class="accordion-collapse collapse"
+                                                data-bs-parent="#accordionFlush">
+                                                {% for category in category %}
+                                                <a class="d-block py-2 ps-4"
+                                                    href="{% url 'category_detail' category.slug %}"
+                                                    style="text-decoration: none; color: #000;">
+                                                    {{category.title}}
+                                                </a>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="brand-accordion" class="accordion accordion-flush">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header">
+                                                <button class="accordion-button collapsed fw-bold" type="button"
+                                                    data-bs-toggle="collapse" data-bs-target="#brand-collapseOne"
+                                                    aria-expanded="false" aria-controls="flush-collapseOne">
+                                                    Brands
+                                                </button>
+                                            </h2>
+                                            <div id="brand-collapseOne" class="accordion-collapse collapse"
+                                                data-bs-parent="#accordionFlush">
+                                                {% for brand in brand %}
+                                                <a class="d-block py-2 ps-4" href="{% url 'brand_detail' brand.slug %}"
+                                                    style="text-decoration: none; color: #000;">
+                                                    {{brand.title}}
+                                                </a>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="size-accordion" class="accordion accordion-flush">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header">
+                                                <button class="accordion-button collapsed fw-bold" type="button"
+                                                    data-bs-toggle="collapse" data-bs-target="#size-collapseOne"
+                                                    aria-expanded="false" aria-controls="flush-collapseOne">
+                                                    Sizes
+                                                </button>
+                                            </h2>
+                                            <div id="size-collapseOne" class="accordion-collapse collapse"
+                                                data-bs-parent="#accordionFlush">
+                                                {% for size in size %}
+                                                <a class="d-block py-2 ps-4" href="{% url 'size_detail' size.slug %}"
+                                                    style="text-decoration: none; color: #000;">
+                                                    {{size.title}}
+                                                </a>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!------------------>
+                <div class="row d-none d-md-flex justify-content-between py-3">
+                    <div class="col-3">
+                        <div id="category-accordion" class="accordion accordion-flush">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed fw-bold" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#category-collapseOne"
+                                        aria-expanded="false" aria-controls="flush-collapseOne">
+                                        Categories
+                                    </button>
+                                </h2>
+                                <div id="category-collapseOne" class="accordion-collapse collapse"
+                                    data-bs-parent="#accordionFlush">
+                                    {% for category in category %}
+                                    <a class="d-block py-2 ps-4" href="{% url 'category_detail' category.slug %}"
+                                        style="text-decoration: none; color: #000;">
+                                        {{category.title}}
+                                    </a>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        <div id="brand-accordion" class="accordion accordion-flush">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed fw-bold" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#brand-collapseOne"
+                                        aria-expanded="false" aria-controls="flush-collapseOne">
+                                        Brands
+                                    </button>
+                                </h2>
+                                <div id="brand-collapseOne" class="accordion-collapse collapse"
+                                    data-bs-parent="#accordionFlush">
+                                    {% for brand in brand %}
+                                    <a class="d-block py-2 ps-4" href="{% url 'brand_detail' brand.slug %}"
+                                        style="text-decoration: none; color: #000;">
+                                        {{brand.title}}
+                                    </a>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        <div id="size-accordion" class="accordion accordion-flush">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed fw-bold" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#size-collapseOne"
+                                        aria-expanded="false" aria-controls="flush-collapseOne">
+                                        Sizes
+                                    </button>
+                                </h2>
+                                <div id="size-collapseOne" class="accordion-collapse collapse"
+                                    data-bs-parent="#accordionFlush">
+                                    {% for size in size %}
+                                    <a class="d-block py-2 ps-4" href="{% url 'size_detail' size.slug %}"
+                                        style="text-decoration: none; color: #000;">
+                                        {{size.title}}
+                                    </a>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-9">
+                        {% if products %}
+                        {% for product in products %}
+                        <div id="product-item" class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12 px-3 py-4">
+                            <a class="product-link"
+                                href="{% url 'category_product' product.category.slug product.slug %}">
+                                <div class="product-card d-block rounded p-2" style="background-color: #f2f2f2;">
+                                    {% if product.image %}
+                                    <div class="product-image d-flex justify-content-center">
+                                        <img class="img-fluid" src="{{ product.image.url }}"
+                                            alt="image of {{ product.title }}">
+                                    </div>
+                                    {% else %}
+                                    <div class="product-image d-flex justify-content-center">
+                                        <img class="img-fluid"
+                                            src="{% static '/images/thumbnail/product-thumbnail.jpg' %}"
+                                            alt="image of {{ product.title }}">
+                                    </div>
+                                    {% endif %}
+                                    <div class="product-title">
+                                        {{ product.title }}
+                                    </div>
+                                    <div class="product-brand-title">
+                                        {{ product.brand.title }}
+                                    </div>
+                                    <div class="product-price">
+                                        ₹.&nbsp;{{ product.price }}.00
+                                    </div>
+                                    <div class="product-description">
+                                        {{ product.description }}
+                                    </div>
+                                    <div class="add-to-cart-btn d-flex justify-content-end py-2 px-2">
+                                        <a href="{% url 'add_to_cart' product.id %}">
+                                            <img class="img-fluid" src="{% static 'images/add-to-cart.png' %}"
+                                                alt="Cart icon" style="width: 16px;">
+                                        </a>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                        <p>Product will be updated soon</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="paginator d-flex justify-content-center">
+                    <div class="row">
+                        <div class="col-auto">
+                            {% if products.has_other_pages %}
+                            <ul class="pagination">
+                                {% if products.has_previous %}
+                                <li><a class="text-dark" href="?page={{ products.previous_page_number }}">&laquo;</a>
+                                </li>
+                                {% else %}
+                                <li class="disabled text-dark"><span>&laquo;</span></li>
+                                {% endif %}
+                                {% for i in products.paginator.page_range %}
+                                {% if products.number == i %}
+                                <li class="active text-dark px-1"><span>{{ i }}</span>
+                                </li>
+                                {% else %}
+                                <li><a class="px-1" href="?page={{ i }}">{{ i }}</a></li>
+                                {% endif %}
+                                {% endfor %}
+                                {% if products.has_next %}
+                                <li><a class="text-dark" href="?page={{ products.next_page_number }}">&raquo;</a></li>
+                                {% else %}
+                                <li class="disabled text-dark"><span>&raquo;</span></li>
+                                {% endif %}
+                            </ul>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</section>
+
+{% include 'core/footer.html' %}
+{% endblock %}

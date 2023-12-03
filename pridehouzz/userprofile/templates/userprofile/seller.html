@@ -1,0 +1,96 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}
+My Store
+{% endblock %}
+
+{% block start %}
+<link rel="stylesheet" href="{% static 'styles/seller.css' %}">
+
+<section id="seller-section" style="padding-top: 120px;">
+    <div class="container">
+        <div class="row d-block">
+            <div class="col-auto py-2">
+                <div class="seller-header-title py-2">
+                    <h2 class="text-center">
+                        MY STORE
+                    </h2>
+                </div>
+            </div>
+
+            {% if messages %}
+            {% for message in messages %}
+            <div class="messages py-3">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% endif %}
+
+            <div class="col-auto py-2">
+                <div class="add-product-btn">
+                    <button class="btn btn-primary">
+                        <a href="{% url 'add_product' %}" class="text-white">
+                            Add Product
+                        </a>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="seller-products" style="background-color: whitesmoke;">
+        <div class="container">
+            <div class="col-auto py-4">
+                <div class="product-list-title py-3">
+                    <h3>
+                        MY PRODUCTS
+                    </h3>
+                </div>
+                {% if products %}
+                <div class="row d-flex justify-content-between py-3">
+                    {% for product in products %}
+                    <div id="product-item" class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12 px-3 py-4">
+                        <a class="product-link" href="{% url 'edit_product' product.id %}">
+                            <div class="product-card d-block rounded p-2" style="background-color: #e6e6e6;">
+                                {% if product.image %}
+                                    <div class="product-image d-flex justify-content-center">
+                                        <img class="img-fluid" src="{{ product.image.url }}" alt="image of {{ product.title }}">
+                                    </div>
+                                {% else %}
+                                    <div class="product-image d-flex justify-content-center">
+                                        <img class="img-fluid" src="{% static '/images/thumbnail/product-thumbnail.jpg' %}" alt="image of {{ product.title }}">
+                                    </div>
+                                {% endif %}
+                                <div class="product-details py-2">
+                                    <div class="product-brand-title">
+                                        <span class="text-dark">{{ product.brand.title }}</span>
+                                    </div>
+                                    <div class="product-title">
+                                         <span class="text-dark">{{ product.title }}</span>
+                                    </div>
+                                    <div class="product-price">
+                                         <span class="text-dark">₹.&nbsp;{{product.price}}.00</span>
+                                    </div>
+                                    <div class="product-description">
+                                         <span class="text-dark">{{product.description}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="alert-text">
+                    <p>
+                        You don't have any products
+                    </p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include 'core/footer.html' %}
+{% endblock %}

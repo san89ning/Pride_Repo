@@ -1,0 +1,25 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load menu %}
+
+{% block title %}
+Product
+{% endblock %}
+
+{% block start %}
+<link rel="stylesheet" href="{% static 'styles/privacy.css' %}">
+
+<section id="privacy-section">
+    <div class="container p-0">
+        <div class="privacy-header">
+            <div class="row py-3">
+                <div class="col-12">
+                    <h3>PRIVACY</h3>
+                </div>
+            </div>
+        </div>
+        <p>Privacy will be updated soon</p>
+    </div>
+</section>
+{% include 'core/footer.html' %}
+{% endblock %}
