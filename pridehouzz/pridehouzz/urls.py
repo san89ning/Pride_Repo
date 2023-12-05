@@ -33,8 +33,7 @@ urlpatterns = [
     path('payment/', payment, name='payment'),
     path('delivery/', delivery, name='delivery'),
     path('', include('userprofile.urls')),
-    path('', include('store.urls')),
-    path('', include('pwa.urls'))
+    path('', include('store.urls'))
 ] 
 
 if settings.DEBUG:
