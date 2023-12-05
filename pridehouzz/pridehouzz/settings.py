@@ -14,8 +14,6 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
-PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'static\script', 'serviceworker.js')
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -145,98 +143,3 @@ MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media_cdn")
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
-
-# Progressive web App
-"""
-PWA_CONFIG = {
-    "name": "pridehouzz",
-    "short_name": "P26",
-    "theme_color": "#000",
-    "background_color": "#000",
-    "display": "standalone",
-    "orientation": "any",
-    "scope": "/",
-    "start_url": "/",
-    "icons": [
-        {
-           "src": "/static/images/logo/brand-logo1.png",
-           "type": "image/png",
-           "sizes": "72x72"
-        },
-        {
-                        "src": "/static/images/logo/brand-logo1.png",
-                        "type": "image/png",
-                        "sizes": "96x96"
-                },
-                {
-                        "src": "/static/images/logo/brand-logo1.png",
-                        "type": "image/png",
-                        "sizes": "128x128"
-                },
-                {
-                        "src": "/static/images/logo/brand-logo1.png",
-                        "type": "image/png",
-                        "sizes": "144x144"
-                },
-                {
-                        "src": "/static/images/logo/brand-logo1.png",
-                        "type": "image/png",
-                        "sizes": "152x152"
-                },
-                {
-                        "src": "/static/images/logo/brand-logo1.png",
-                        "type": "image/png",
-                        "sizes": "192x192"
-                },
-                {
-                        "src": "/static/images/logo/brand-logo1.png",
-                        "type": "image/png",
-                        "sizes": "384x384"
-                },
-                {
-                        "src": "/static/images/logo/brand-logo1.png",
-                        "type": "image/png",
-                        "sizes": "512x512"
-                }
-    ],
-     "lang": "en",
-        "dir": "ltr",
-        "description": "Progressive Web app powerd by Django",
-        "version": "1.",
-        "manifest_version": "1.0",
-        "permissions": [
-                "notifications",
-                "webRequest"
-        ],
-        "author": "PWA-django"
-}
-"""
-PWA_APP_NAME = 'pridehouzz'
-PWA_APP_DESCRIPTION = "Pridehouzz PWA"
-PWA_APP_THEME_COLOR = '#000'
-PWA_APP_BACKGROUND_COLOR = '#fff'
-PWA_APP_DISPLAY = 'standalone'
-PWA_APP_SCOPE = '/'
-PWA_APP_ORIENTATION = 'any'
-PWA_APP_START_URL = '/'
-PWA_APP_STATUS_BAR_COLOR = 'default'
-PWA_APP_ICONS = [
-    {
-        'src': 'static/images/brand-logo2.png',
-        'sizes': '160x160'
-    }
-]
-PWA_APP_ICONS_APPLE = [
-    {
-        'src': 'static/images/brand-logo2.png',
-        'sizes': '160x160'
-    }
-]
-PWA_APP_SPLASH_SCREEN = [
-    {
-        'src': 'static/images/brand-logo2.png',
-        'media': '(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)'
-    }
-]
-PWA_APP_DIR = 'ltr'
-PWA_APP_LANG = 'en-US'
