@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from .models import SearchTerm, OrderItem
 from .cart import Cart
 from .forms import OrderForm
+import requests
 
 # Create your views here.
 
@@ -35,6 +36,7 @@ def search(request):
 
 @login_required(login_url='login')
 def category_detail(request, slug):
+
     category = get_object_or_404(Category, slug=slug)
     products = category.products.filter(status=Product.ACTIVE)
 

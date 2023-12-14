@@ -5,7 +5,7 @@ from io import BytesIO
 from PIL import Image
 from userprofile.models import Userprofile
 
-# Create your models here.
+# Category Model.
 class Category(models.Model):
     title = models.CharField(max_length=50)
     slug = models.SlugField(max_length=50)
@@ -15,7 +15,8 @@ class Category(models.Model):
     
     def __str__(self):
         return self.title
-    
+
+# Brand Model.
 class Brand(models.Model):
     title = models.CharField(max_length=50)
     slug = models.SlugField(max_length=50)
@@ -25,7 +26,8 @@ class Brand(models.Model):
     
     def __str__(self):
         return self.title
-    
+
+# Size Model.
 class Size(models.Model):
     title = models.CharField(max_length=50)
     slug = models.SlugField(max_length=50)
@@ -36,6 +38,7 @@ class Size(models.Model):
     def __str__(self):
         return self.title
 
+# Product Model.
 class Product(models.Model):
     DRAFT = 'draft'
     WAITING_APPROVAL = 'waitingapproval'
@@ -68,6 +71,7 @@ class Product(models.Model):
     def __str__(self):
         return self.title
 
+# Search Model.
 class SearchTerm(models.Model):
     query = models.TextField(max_length=50, blank=True, null=True)
     user = models.ForeignKey(User, related_name='searchTerm', on_delete=models.CASCADE)
@@ -76,6 +80,7 @@ class SearchTerm(models.Model):
     def __str__(self):
         return self.query
 
+# Order Model
 class Order(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
@@ -92,7 +97,7 @@ class Order(models.Model):
     def __str__(self):
         return self.first_name
 
-
+# OrderItem Model.
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE)
     product = models.ForeignKey(Product, related_name='items', on_delete=models.CASCADE)

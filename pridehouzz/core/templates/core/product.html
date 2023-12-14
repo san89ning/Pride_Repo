@@ -116,6 +116,9 @@ Product
                 <div class="row d-none d-md-flex justify-content-between py-3">
                     <div class="col-3">
                         <div id="category-accordion" class="accordion accordion-flush">
+                            {% for cat_name in cat_name %}
+                            {{cat_name}}
+                            {% endfor %}
                             <div class="accordion-item">
                                 <h2 class="accordion-header">
                                     <button class="accordion-button collapsed fw-bold" type="button"

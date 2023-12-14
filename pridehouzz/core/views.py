@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.contrib import messages
 from store.cart import Cart
+import requests
 
 # Create your views here.
 def home(request):
@@ -45,7 +46,6 @@ def product(request):
     size = Size.objects.all()
     cart = Cart(request)
     
-
     page = request.GET.get('page', 1)
     paginator = Paginator(products, 4)
     try:
@@ -60,7 +60,7 @@ def product(request):
         'category': category,
         'brand': brand,
         'size': size,
-        'cart': cart,
+        'cart': cart
     }
 
     return render(request, 'core/product.html', context)
